@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orçamento</title>
+    <link rel = "stylesheet" href = "style.css">
+    <link rel = "stylesheet" href = "card.css">
+    <link rel = "stylesheet" href = "modal.css">
+   
+</head>
+<body>
+    <script  src="./budget.js" defer></script>
+    <script  src="./routes/router.js" defer></script>
+    <script  src="./register/client.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script> 
+    <header>
+        <h1></h1>
+    </header>
+
+    <main>
+      
+   <section class="budget">
+     <div class = "card">
+       
+        <datalist id="cliente">
+            
+        </datalist>
+        <datalist id="produto">
+
+        </datalist>
+        
+                <div id = "inputs"  >
+                        <div class="box">
+                                <div class="line__input">
+                                    
+                                    <label id="labelcliente" for="inputcliente"> <img src='../pictures/user.png' class="img__budget">Cliente</label>
+                                    <input  onchange="register(3)"type="text" list="cliente" id="inputcliente" placeholder="Nome do cliente" class="img">
+                                    
+                                    <label><img src='../pictures/entregavel.png' class="img__budget">Produto</label>
+                                    <input onchange="register(2)" type="text" list="produto" id="inputproduto" placeholder="Nome do produto" >
+                                    <img src="../pictures/lupa.png" class="img__search" onclick="fazgetUser(false), fazgetProduct()">  
+                                    <label>Orçamento</label>
+                                    <input id="inputbudget" type="text" list="" placeholder="Nome do orçamento">
+                                    <button  id="load" class = "button_budget" onclick= "">Carregar Orçamento</button>     
+                                </div>
+                                    
+                                    <div class="profile">
+                                        <div class="upper-container">
+                                            <div class="image-container">
+                                                <img src="../pictures/user.png" />
+                                            </div>
+                                        </div>
+                                
+                                        <div class="lower-container">
+                                            <div>
+                                                <h3 id="name">Cliente</h3>
+                                                <h4 id="email">Email</h4>
+                                                <h4 id="cpf">CPF/CNPJ</h4>
+                                                <h4 id="cep">CEP</h4>
+                                                <h4 id="tel">Tel</h4>
+                                            </div>
+                                           
+                                        </div>
+                                        <button id="new"class="button_client">Novo Cliente</button>
+                                </div>
+                               
+                            </div>
+                            <div class="product">
+                                <div class="product__info">
+                                    <label><img src='../pictures/cozinha.png' class="img__budget">Ambiente</label>
+                                    <input id="area" placeholder="Área do produto">
+                               
+                                
+                                    <label><img src='../pictures/descricao.png' class="img__budget">Descrição</label>
+                                    <textarea placeholder="Descrição do móvel" cols="30" rows="10" id="description" ></textarea>
+                             
+                                </div>
+                                
+                                <div class="product__caracter">
+                                    <label><img src='../pictures/dinheiro.png' class="img__budget">Valor</label>
+                                    <input  type="text" id="value" placeholder="Valor do produto" class="input__caracter">
+                              
+                             
+                                    <label><img src='../pictures/area.png' class="img__budget">Dimensão</label>
+                                    <input type="number" id="comprimento" placeholder="Comprimento do produto" class="input__caracter">
+                                    <input type="number" id="altura" placeholder="Altura do produto" class="input__caracter">
+                                    <button class = "button_table" id="add" onclick= "produto.Add()">Salvar</button>
+                                </div>
+                            </div>
+                 </div>
+                
+               
+                <button class = "button_table" onclick= "produto.Cancel()">Cancelar</button>
+                <button class = "button_table" onclick= "produto.DeleteAll()">Deletar Orçamento</button>
+               
+                <button class = "button_send" onclick= "produto.SendRequest();">Enviar Orçamento</button>
+         
+                
+              
+     </div>  
+  
+      <div class="content">
+          <table border="1">
+              <thead class="center">
+                  <th >ID</th>
+                  <th>Produto</th>
+                  <th>Valor</th>
+                  <th>Comprimento</th>
+                  <th>Altura</th> 
+                  <th>Dimensão(m2)</th>   
+                  <th>Valor total Produto</th>  
+                  <th class="area"> <img class = "img_ordem" id="img_ordem" src="../pictures/crescente.png" onclick="produto.Filter(true)"> Ambiente</th> 
+                  <th>Descrição</th>    
+                  <th>Ações</th>
+              </thead>
+              <tbody id="tbody">
+                
+              </tbody>
+              <tfoot id="tfoot">
+                  <tr>
+                      <td colspan="6">Total</td>
+                      <td id="RowTotal"></td>
+                    </tr>
+              </tfoot>
+          </table>
+      </div>
+   
+     
+      </section>
+    
+    </main>
+  
+    <div class="modal" id="modal">
+        <div class="modal_client" id="modal_client">
+            <button id="close">X</button>
+                <form onsubmit="fazgetUser(true)">
+                    <h1>Cadastro</h1>
+                    <label>Cliente</label>
+                    <input id="name_client" required>
+                    <label>Email</label>
+                    <input id="email_client" required>
+                    <label>CPF/CNPJ</label>
+                    <input id="cnpj_client" required>
+                    <label>CEP</label>
+                    <input id="cep_client" required>
+                    <label>Tel</label>
+                    <input id="tel_client" required>
+                    <button id="send">Cadastrar</button>
+                </form>
+          </div>
+    
+      </div>
+</body>
+</html>
